@@ -180,7 +180,16 @@ Tekrar **cluster**'ın durumunu gözlemleyebilirisiniz.
 Son olarak,
 ~~~
 sudo vi .bashrc
+~~~
 
+**Tüm Node**
+~~~
+swapoff -a
+~~~
+
+**Sadece MASTER/S Node**
+~~~
+swapoff -a
 export KUBECONFIG=.kube/config
 ~~~
 
