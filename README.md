@@ -204,5 +204,5 @@ export KUBECONFIG=.kube/config
 
 Yani **--control-plane-endpoint** adresi belirlediğiniz **vrrp** olacak, **--apiserver-advertise-address** **ip**'si de ilk **master node**'nizin **ip**'sini yazabilirsiniz.
 ~~~
-sudo kubeadm init --control-plane-endpoint="10.10.10.200:6443" --apiserver-advertise-address=10.10.10.113 --pod-network-cidr=192.168.0.0/24 --upload-certs
+sudo kubeadm init --control-plane-endpoint="10.10.10.200:6443" --apiserver-advertise-address=10.10.10.113 --pod-network-cidr=192.168.0.0/16 --upload-certs
 ~~~
