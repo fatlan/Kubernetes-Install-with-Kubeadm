@@ -64,10 +64,10 @@ Bu arada **container runtime Unix domain socket** yolları aşağıdaki gibidir.
 ~~~
 Docker      > /var/run/docker.sock
 Containerd  > /run/containerd/containerd.sock
-CRI-O       > /var/run/crio/crio.sock
+Cri-o       > /var/run/crio/crio.sock
 ~~~
 
-Şimdi ise Kubernetes paketlerini kuralım.
+Şimdi ise **kubernetes** paketlerini kuralım.
 ~~~
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 
@@ -121,8 +121,11 @@ kubeadm join 10.10.10.113:6443 --token 6sdzxn.pvgby7g42xq59mfb \
 Hemen yapalım.
 ~~~
 mkdir -p $HOME/.kube
+
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
 #export KUBECONFIG=/etc/kubernetes/admin.conf olarak direk çalıştırmıyorum çünkü permission hatası alırım,
 export KUBECONFIG=.kube/config
 ~~~
