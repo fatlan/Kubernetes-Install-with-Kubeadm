@@ -177,7 +177,7 @@ sudo kubeadm join 10.10.10.113:6443 --token 6sdzxn.pvgby7g42xq59mfb \
 
 Tekrar **cluster**'ın durumunu gözlemleyebilirisiniz.
 
-Son olarak,
+Son olarak **bashrc**'yi **edit**'leyerek aşağıdaki satırları ilgili **node**'lere ekleyelim.
 ~~~
 sudo vi .bashrc
 ~~~
