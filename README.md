@@ -2,19 +2,19 @@
 
 
 ~~~
-NAME                       STATUS   ROLES                  AGE    VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION     CONTAINER-RUNTIME
-fatlan-kubernetes-master   Ready    control-plane,master   122m   v1.23.3   10.10.10.113  <none>        Ubuntu 20.04.3 LTS   5.4.0-97-generic   containerd://1.5.5
-fatlan-kubernetes-node01   Ready    <none>                 115m   v1.23.3   10.10.10.114  <none>        Ubuntu 20.04.3 LTS   5.4.0-97-generic   containerd://1.5.5
-fatlan-kubernetes-node02   Ready    <none>                 115m   v1.23.3   10.10.10.115  <none>        Ubuntu 20.04.3 LTS   5.4.0-97-generic   containerd://1.5.5
+NAME                STATUS   ROLES                  AGE    VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION     CONTAINER-RUNTIME
+kubernetes-master   Ready    control-plane,master   122m   v1.23.3   10.10.10.113  <none>        Ubuntu 20.04.3 LTS   5.4.0-97-generic   containerd://1.5.5
+kubernetes-node01   Ready    <none>                 115m   v1.23.3   10.10.10.114  <none>        Ubuntu 20.04.3 LTS   5.4.0-97-generic   containerd://1.5.5
+kubernetes-node02   Ready    <none>                 115m   v1.23.3   10.10.10.115  <none>        Ubuntu 20.04.3 LTS   5.4.0-97-generic   containerd://1.5.5
 ~~~
 
 **1-** **Tüm Node**'ler de çalıştırılmalıdır.
 ~~~
 sudo vim /etc/hosts
 
-10.10.10.113 fatlan-kubernetes-master
-10.10.10.114 fatlan-kubernetes-node01
-10.10.10.115 fatlan-kubernetes-node02
+10.10.10.113 kubernetes-master
+10.10.10.114 kubernetes-node01
+10.10.10.115 kubernetes-node02
 ~~~
 
 Gerekli paketleri kuralım.
