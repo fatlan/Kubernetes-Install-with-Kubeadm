@@ -157,7 +157,7 @@ kubectl get nodes -o wide
 #Master'da init sürecinde token bilgisi verilmisti eğer not almadıysanız aşağıdaki komut ile master node üerinden token'ınızı listeleyebilirsiniz,
 kubeadm token list
 
-#Var olan token'ı elde etmek için,
+#Var olan token'ı kaydetmediyseniz, elde etmek için,
 kubeadm token create --print-join-command
 
 #Master uzerinden ca cert hash'i elde etmek için,
