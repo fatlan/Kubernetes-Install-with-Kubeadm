@@ -181,13 +181,11 @@ Son olarak **bashrc**'yi **edit**'leyerek aşağıdaki satırları ilgili **node
 ~~~
 sudo vi .bashrc
 ~~~
-
-**Tüm Node**
+Tüm Node
 ~~~
 swapoff -a
 ~~~
-
-**Sadece MASTER/S Node**
+Sadece MASTER/S Node
 ~~~
 swapoff -a
 export KUBECONFIG=.kube/config
