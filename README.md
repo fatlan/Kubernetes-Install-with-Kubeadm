@@ -194,10 +194,10 @@ export KUBECONFIG=.kube/config
 
 **NoT** : Ek bilgi
 
-**kubeadm init parametreleri**:
-**--control-plane-endpoint** :  set the shared endpoint for all control-plane nodes. Can be DNS/IP
-**--pod-network-cidr** : Used to set a Pod network add-on CIDR
-**--cri-socket** : Use if have more than one container runtime to set runtime socket path
+**kubeadm init parametreleri**:<br>
+**--control-plane-endpoint** :  set the shared endpoint for all control-plane nodes. Can be DNS/IP<br>
+**--pod-network-cidr** : Used to set a Pod network add-on CIDR<br>
+**--cri-socket** : Use if have more than one container runtime to set runtime socket path<br>
 **--apiserver-advertise-address** : Set advertise address for this particular control-plane node's API server
 
 Örnek olarak **3** ya da daha fazla **Master Node**'yi **Haproxy** ve **Keepalived** aracılığı ile eklemek isterseniz **kubeadm init**'i aşağıdaki gibi çalıştırmalısınız.
