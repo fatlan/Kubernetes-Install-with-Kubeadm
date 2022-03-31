@@ -79,6 +79,10 @@ sudo apt-mark hold kubelet kubeadm kubectl
 kubectl version --client && kubeadm version
 ~~~
 
+**Kubectl autocompletion enable** yapalım.
+~~~
+kubectl completion bash | sudo tee /etc/bash_completion.d/kubectl > /dev/null
+~~~
 
 **2- Sadece Master Node**'sinde çalıştırılmalıdır.
 
