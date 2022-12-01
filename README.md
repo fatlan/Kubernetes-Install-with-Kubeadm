@@ -17,15 +17,28 @@ sudo vim /etc/hosts
 10.10.10.115 kubernetes-node02
 ~~~
 
+Tüm hostlarda çalıştırılır, $USER aktif kullanıcı ile değiştirilir.
+~~~
+sudo echo "$USER ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/$USER
+~~~
+
+Özellikle Master/s makinelerinde ssh key dağıtılmalıdır ama tüm makineler arası çalıştırılmasında fayda var.
+~~~
+ssh-keygen
+
+ssh-copy-id $USER@10.10.10.113
+ssh-copy-id $USER@10.10.10.114
+ssh-copy-id $USER@10.10.10.115
+~~~
+
 Gerekli paketleri kuralım.
 ~~~
 sudo apt update && sudo apt -y install curl apt-transport-https vim git wget gnupg2 software-properties-common ca-certificates
 ~~~
 
-Akabinde **swap** alanını kapatalım.
+Akabinde **swap** alanını kapatalım ama her makine **reboot** olduğunda bu işlem gerekli, en geçerli yöntem **swap**'sız makine kurulumudur.
 ~~~
 sudo swapoff -a
-sudo sed -i '/swap/ s/^\(.*\)$/#\1/g' /etc/fstab
 ~~~
 
 Şimdi **container runtime** kurulumu yapacağız. Alternatifler **containerd**, **docker** ve **cri-o**'dur fakat **kubernetes dockershim deprecation** yaptığı için biz **containerd** yapacağız, zaten **default** olarak **containerd** geliyor.
@@ -49,7 +62,7 @@ EOF
 ~~~
 sudo sysctl --system
 
-sudo apt install -y containerd
+sudo apt install -y containerd runc
 
 sudo mkdir -p /etc/containerd
 
@@ -74,8 +87,8 @@ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
 echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 
 sudo apt update
-sudo apt -y install kubelet kubeadm kubectl
-sudo apt-mark hold kubelet kubeadm kubectl
+sudo apt -y install kubelet kubeadm kubectl kubernetes-cni
+sudo apt-mark hold kubelet kubeadm kubectl kubernetes-cni
 kubectl version --client && kubeadm version
 ~~~
 
@@ -85,6 +98,11 @@ kubectl completion bash | sudo tee /etc/bash_completion.d/kubectl > /dev/null
 ~~~
 
 **2- Sadece Master Node**'sinde çalıştırılmalıdır.
+
+**Optional** olarak aşağıdaki komutla **cluster** için gereken **imajları download** edebilirsiniz fakat yapmazsanızda kurulum esnasında uygulama yapacaktır.
+~~~
+sudo kubeadm config images pull
+~~~
 
 Bu aşamada **POD Network**'ünü de oluşturacağız. Alternatifler **Calico**, **Canal**, **Flannel**, **Romana** ve **Weave**'dir. Biz **Calico** kurulumu yapacağız.
 **Kubeadm init** ile **Cluster**'ı oluştururken bunu(**--pod-network-cidr**) dikkate alacağız.
