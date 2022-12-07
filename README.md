@@ -234,7 +234,6 @@ ya da
 sudo kubeadm init --control-plane-endpoint "LOAD_BALANCER_DNS:LOAD_BALANCER_PORT" --pod-network-cidr=192.168.0.0/16 --upload-certs
 ~~~
 
-Herhangi bir hata almanız halinde aşağıdaki komutu yürüterek **init**'i tekrar başlatabilirsiniz.
-~~~
+**Init** sürecinde herhangi bir hata almanız halinde aşağıdaki komutu yürüterek **init**‘i tekrar başlatabilirsiniz.~~~
 sudo kubeadm init reset
 ~~~
