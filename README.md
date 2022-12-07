@@ -68,9 +68,9 @@ sudo mkdir -p /etc/containerd
 
 sudo containerd config default | sudo tee /etc/containerd/config.toml
 
-sudo systemctl restart containerd.service
+sudo sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' /etc/containerd/config.toml
 
-#To use the systemd cgroup driver, "set plugins.cri.systemd_cgroup = true" in /etc/containerd/config.toml. When using kubeadm, manually configure the cgroup driver for kubelet
+sudo systemctl restart containerd.service
 ~~~
 
 Bu arada **container runtime Unix domain socket** yolları aşağıdaki gibidir.
