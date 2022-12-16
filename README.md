@@ -239,3 +239,48 @@ sudo kubeadm init --control-plane-endpoint "LOAD_BALANCER_DNS:LOAD_BALANCER_PORT
 ~~~
 sudo kubeadm init reset
 ~~~
+
+Bu vesileyle ortama **Haproxy** ve **Keepalived** dahil ederseniz, **haproxy** için yapabileceğiniz yapılandırmayı da eklemiş olalım.
+~~~
+frontend kubelets
+        bind k8s-fatlan.com:10250
+        mode tcp
+        default_backend kubelet
+
+frontend kubeproxys
+        bind k8s-fatlan.com:10256
+        mode tcp
+        default_backend kubeproxy
+
+frontend kubeapis
+        bind k8s-fatlan.com:6443
+        mode tcp
+        default_backend kubeapi
+
+backend kubelet
+        mode tcp
+        option tcplog
+        option tcp-check
+        balance roundrobin
+        server kube-cluster-kubelet-01 10.1.10.52:10250 check port 10250 inter 3000 rise 2 fall 3
+        server kube-cluster-kubelet-02 10.1.10.53:10250 check port 10250 inter 3000 rise 2 fall 3
+        server kube-cluster-kubelet-03 10.1.10.54:10250 check port 10250 inter 3000 rise 2 fall 3
+
+backend kubeproxy
+        mode tcp
+        option tcplog
+        option tcp-check
+        balance roundrobin
+        server kube-cluster-kubeproxy-01 10.1.10.52:10256 check port 10256 inter 3000 rise 2 fall 3
+        server kube-cluster-kubeproxy-02 10.1.10.53:10256 check port 10256 inter 3000 rise 2 fall 3
+        server kube-cluster-kubeproxy-03 10.1.10.54:10256 check port 10256 inter 3000 rise 2 fall 3
+
+backend kubeapi
+        mode tcp
+        option tcplog
+        option tcp-check
+        balance roundrobin
+        server kube-cluster-kubeapi-01 10.1.10.52:6443 check port 6443 inter 3000 rise 2 fall 3
+        server kube-cluster-kubeapi-02 10.1.10.53:6443 check port 6443 inter 3000 rise 2 fall 3
+        server kube-cluster-kubeapi-03 10.1.10.54:6443 check port 6443 inter 3000 rise 2 fall 3
+~~~
