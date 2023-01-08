@@ -33,7 +33,19 @@ ssh-copy-id $USER@10.10.10.115
 
 Gerekli paketleri kuralım.
 ~~~
-sudo apt update && sudo apt -y install curl apt-transport-https vim git wget gnupg2 software-properties-common ca-certificates
+sudo apt update && sudo apt -y install curl apt-transport-https vim git wget gnupg2 software-properties-common ca-certificates chrony
+~~~
+
+**Ntp server** değiştirilir.
+~~~
+sudo vi /etc/chrony/chrony.conf
+~~~
+~~~
+#pool ntp.ubuntu.com        iburst maxsources 4
+#pool 0.ubuntu.pool.ntp.org iburst maxsources 1
+#pool 1.ubuntu.pool.ntp.org iburst maxsources 1
+#pool 2.ubuntu.pool.ntp.org iburst maxsources 2
+server $NTP_SERVER_IP iburst
 ~~~
 
 Akabinde **swap** alanını kapatalım ama her makine **reboot** olduğunda bu işlem gerekli, en geçerli yöntem **swap**'sız makine kurulumudur.
