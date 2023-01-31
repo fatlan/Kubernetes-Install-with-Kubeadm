@@ -1,4 +1,4 @@
-# Kubernetes Install (3Node=1Master+2Worker) With Kubeadm on Ubuntu20LTS
+# Kubernetes Install (3Node=1Master+2Worker) With Kubeadm on Ubuntu22LTS
 
 
 ~~~
