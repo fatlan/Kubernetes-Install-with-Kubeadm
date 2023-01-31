@@ -3,9 +3,9 @@
 
 ~~~
 NAME                STATUS   ROLES                  AGE    VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION     CONTAINER-RUNTIME
-kubernetes-master   Ready    control-plane,master   122m   v1.23.3   10.10.10.113  <none>        Ubuntu 20.04.3 LTS   5.4.0-97-generic   containerd://1.5.5
-kubernetes-node01   Ready    <none>                 115m   v1.23.3   10.10.10.114  <none>        Ubuntu 20.04.3 LTS   5.4.0-97-generic   containerd://1.5.5
-kubernetes-node02   Ready    <none>                 115m   v1.23.3   10.10.10.115  <none>        Ubuntu 20.04.3 LTS   5.4.0-97-generic   containerd://1.5.5
+kubernetes-master   Ready    control-plane,master   122m   v1.26.1   10.10.10.113  <none>        Ubuntu 22.04 LTS     5.4.0-97-generic   containerd://1.6.9
+kubernetes-node01   Ready    <none>                 115m   v1.26.1   10.10.10.114  <none>        Ubuntu 22.04 LTS     5.4.0-97-generic   containerd://1.6.9
+kubernetes-node02   Ready    <none>                 115m   v1.26.1   10.10.10.115  <none>        Ubuntu 22.04 LTS     5.4.0-97-generic   containerd://1.6.9
 ~~~
 
 **1-** **Tüm Node**'ler de çalıştırılmalıdır.
