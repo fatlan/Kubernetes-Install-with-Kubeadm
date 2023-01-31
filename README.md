@@ -72,10 +72,18 @@ net.ipv4.ip_forward = 1
 net.bridge.bridge-nf-call-ip6tables = 1
 EOF
 ~~~
+
+**Containerd**'yi güncel olması için(aksi takdirde daha **kubernetes** **image**'leri **pull** ederken versiyon uyumsuzluğundan hata alacaksınız - https://containerd.io/releases) **docker reposu**nu kullanarak kuracağız, yanlış anlaşılmasın **docker** kurulumu yapmayacağız, isterseniz **manual** olarak da **containerd** ve **runc**'yi kurabilirsiniz. https://github.com/containerd/containerd/blob/main/docs/getting-started.md linkinden faydalanabilirsiniz.
 ~~~
 sudo sysctl --system
 
-sudo apt install -y containerd
+sudo mkdir -p /etc/apt/keyrings
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+sudo apt install -y containerd.io
 
 sudo mkdir -p /etc/containerd
 
@@ -95,6 +103,8 @@ Cri-o       > /var/run/crio/crio.sock
 
 Şimdi ise **kubernetes** paketlerini kuralım.
 ~~~
+sudo mkdir -p /etc/apt/keyrings
+
 sudo curl -fsSLo /etc/apt/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
 
 echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
