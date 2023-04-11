@@ -47,6 +47,9 @@ sudo vi /etc/chrony/chrony.conf
 #pool 2.ubuntu.pool.ntp.org iburst maxsources 2
 server $NTP_SERVER_IP iburst
 ~~~
+~~~
+sudo systemctl restart chrony.service
+~~~
 
 Akabinde **swap** alanını kapatalım ama her makine **reboot** olduğunda bu işlem gerekli, en geçerli yöntem **swap**'sız makine kurulumudur.
 ~~~
