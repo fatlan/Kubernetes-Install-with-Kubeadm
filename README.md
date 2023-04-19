@@ -262,7 +262,7 @@ sudo kubeadm init --control-plane-endpoint "LOAD_BALANCER_DNS:LOAD_BALANCER_PORT
 
 **Init** sürecinde herhangi bir hata almanız halinde aşağıdaki komutu yürüterek **init**‘i tekrar başlatabilirsiniz.
 ~~~
-sudo kubeadm init reset
+sudo kubeadm reset
 ~~~
 
 Bu vesileyle ortama **Haproxy** ve **Keepalived** dahil ederseniz, **haproxy** için yapabileceğiniz yapılandırmayı da eklemiş olalım.
